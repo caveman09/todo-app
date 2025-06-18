@@ -1,6 +1,7 @@
 import { memo, useContext, useState } from "react";
 import TodoWidget, { type todo } from "./todo-widget";
 import { TodosContext } from "../context/TodosContext";
+import SimpleButton from "./ui/simple-button";
 
 export const TodoList = memo(function TodoList() {
     const { todos } = useContext(TodosContext) || { todos: [] };
@@ -34,9 +35,9 @@ export const TodoInput = memo(function TodoInput() {
         }}>
             <div className="flex flex-grow-1 justify-between">
                 <input type='text' placeholder='Add a new todo here...' className="bg-amber-300 flex-grow-1 rounded-md p-4" value={inputText} onChange={(e) => { setInputText(e.target.value); }} />
-                <button className='text-gray-300 mx-2 mt-2' type="submit">
+                <SimpleButton type="submit" variant={"primary"} size={"medium"}>
                     Add
-                </button>
+                </SimpleButton>
             </div>
         </form>
     )

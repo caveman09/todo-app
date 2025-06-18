@@ -12,6 +12,18 @@ const TodoIdWidget = memo(({ id }: { id: number }) => {
     )
 })
 
+const ToggleCompletedButton = memo(({ hovered, todo }: { hovered: boolean, todo: todo }) => {
+    return (
+        <>
+            {hovered && (
+                <button className="m-0 p-0">
+                    <span className="m-0 p-0">{todo.completed ? "✅" : "❌"}</span>
+                </button>
+            )}
+        </>
+    )
+})
+
 const TodoWidget = ({ todo }: { todo: todo }) => {
     const [hovered, setHovered] = useState(false);
 
@@ -23,7 +35,7 @@ const TodoWidget = ({ todo }: { todo: todo }) => {
                     <TodoIdWidget id={todo.id || 0} />
                     <span className="my-auto">{todo.title}</span>
                 </div>
-                {hovered && <span className="my-auto mr-2">{todo.completed ? " ✅" : " ❌"}</span>}
+                <ToggleCompletedButton hovered={hovered} todo={todo} />
             </li>
         </div>
     )

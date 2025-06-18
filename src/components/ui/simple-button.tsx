@@ -8,10 +8,14 @@ const buttonVariants = cva(
     {
         variants: {
             variant: {
-                primary: "bg-amber-500 text-white hover:bg-amber-600 focus:ring-amber-500",
-                secondary: "bg-amber-200 text-gray-800 hover:bg-amber-300 focus:ring-amber-300",
-                ghost: "bg-transparent text-gray-800 hover:bg-amber-100 focus:ring-amber-100",
-                link: "bg-transparent text-blue-600 hover:bg-blue-100 focus:ring-blue-100 underline",
+                primary: "bg-amber-500 text-white hover:bg-amber-600 focus:ring-amber-500 " +
+                    "dark:bg-amber-400 dark:hover:bg-amber-500 dark:focus:ring-amber-400",
+                secondary: "bg-amber-200 text-gray-800 hover:bg-amber-300 focus:ring-amber-300 " +
+                    "dark:bg-amber-100 dark:text-gray-700 dark:hover:bg-amber-200 dark:focus:ring-amber-200",
+                ghost: "bg-transparent text-gray-800 hover:bg-amber-100 focus:ring-amber-100 " +
+                    "dark:text-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-700",
+                link: "bg-transparent text-blue-600 hover:bg-blue-100 focus:ring-blue-100 underline " +
+                    "dark:text-blue-400 dark:hover:bg-blue-200 dark:focus:ring-blue-200"
             },
             size: {
                 small: "px-2 py-1 text-sm",

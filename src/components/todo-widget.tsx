@@ -1,4 +1,5 @@
 import { memo, useState } from "react";
+import SimpleButton from "./ui/simple-button";
 
 interface todo {
     id?: number;
@@ -16,9 +17,9 @@ const ToggleCompletedButton = memo(({ hovered, todo }: { hovered: boolean, todo:
     return (
         <>
             {hovered && (
-                <button className="m-0 p-0">
+                <SimpleButton variant={"secondary"} size={"small"}>
                     <span className="m-0 p-0">{todo.completed ? "✅" : "❌"}</span>
-                </button>
+                </SimpleButton>
             )}
         </>
     )

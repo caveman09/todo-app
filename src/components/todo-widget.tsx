@@ -30,7 +30,7 @@ const TodoWidget = ({ todo }: { todo: todo }) => {
 
     return (
         <div className="flex">
-            <li className="p-1 text-gray-800 font-semibold hover:bg-amber-100 rounded-md transition-colors flex flex-grow justify-between"
+            <li className="p-1 text-gray-800 dark:text-amber-50  font-semibold hover:bg-amber-100 dark:hover:bg-amber-100/10  rounded-md transition-colors flex flex-grow justify-between"
                 onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
                 <div className="flex gap-x-3">
                     <TodoIdWidget id={todo.id || 0} />

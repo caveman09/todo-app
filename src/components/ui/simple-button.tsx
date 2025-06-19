@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import type { ButtonHTMLAttributes } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../../utils/cn';
 
 const buttonVariants = cva(
     "font-medium rounded transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 " +
@@ -40,11 +41,12 @@ interface SimpleButtonProps
     VariantProps<typeof buttonVariants> {
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
+    className?: string;
 }
 
-const SimpleButton = memo(({ children, variant, size, fullWidth, leftIcon, rightIcon, disabled, ...props }: SimpleButtonProps) => {
+const SimpleButton = memo(({ children, variant, size, fullWidth, leftIcon, rightIcon, disabled, className, ...props }: SimpleButtonProps) => {
     return (
-        <button className={buttonVariants({ variant, size, fullWidth })} disabled={disabled} {...props}>
+        <button className={cn(buttonVariants({ variant, size, fullWidth }), className)} disabled={disabled} {...props}>
             {leftIcon && <span className="mr-2">{leftIcon}</span>}
             {children}
             {rightIcon && <span className="ml-2">{rightIcon}</span>}

@@ -3,19 +3,20 @@ import { TodosProvider } from './context/TodosContext';
 import { TodoInput, TodoList } from './components/todo-list';
 import { ThemeProvider } from './context/ThemeProvider';
 import ThemeToggle from './components/ui/theme-toggle';
+import SimpleCard from "./components/ui/simple-card";
 
 function MasterContainer({ children }: { children?: React.ReactNode }) {
   return (
-    <div className='bg-amber-200 p-5 w-[500px] h-[600px] rounded-md shadow-[5px_5px_2.5px_rgba(0,0,0,0.3)] shadow-black text-gray-700'>
+    <SimpleCard variant="outlined" className='w-[400px] h-[600px]'>
       {children}
-    </div>
+    </SimpleCard>
   )
 }
 
 function App() {
   return (
     <ThemeProvider>
-      <div>
+      <div className=''>
         <div id='title' className="p-5 text-gray-200 font-bold text-[25px] underline decoration-[3px]">
           TodoList
           <ThemeToggle />

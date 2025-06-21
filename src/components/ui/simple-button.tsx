@@ -42,11 +42,12 @@ interface SimpleButtonProps
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
     className?: string;
+    ref?: React.Ref<HTMLButtonElement>;
 }
 
-const SimpleButton = memo(({ children, variant, size, fullWidth, leftIcon, rightIcon, disabled, className, ...props }: SimpleButtonProps) => {
+const SimpleButton = memo(({ children, variant, size, fullWidth, leftIcon, rightIcon, disabled, className, ref, ...props }: SimpleButtonProps) => {
     return (
-        <button className={cn(buttonVariants({ variant, size, fullWidth }), className)} disabled={disabled} {...props}>
+        <button className={cn(buttonVariants({ variant, size, fullWidth }), className)} disabled={disabled} ref={ref} {...props}>
             {leftIcon && <span className="mr-2">{leftIcon}</span>}
             {children}
             {rightIcon && <span className="ml-2">{rightIcon}</span>}

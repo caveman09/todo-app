@@ -1,4 +1,5 @@
-import { memo, useState } from "react";
+import { memo, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import SimpleButton from "./ui/simple-button";
 
 interface todo {
@@ -14,12 +15,40 @@ const TodoIdWidget = memo(({ id }: { id: number }) => {
 })
 
 const ToggleCompletedButton = memo(({ hovered, todo }: { hovered: boolean, todo: todo }) => {
+    const [showTooltip, setShowTooltip] = useState(false);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [buttonRect, setButtonRect] = useState<DOMRect | null>(null);
+
+    function HandleMouseEnter() {
+        if (buttonRef.current) {
+            setButtonRect(buttonRef.current.getBoundingClientRect());
+        }
+        setShowTooltip(true);
+
+        console.log("Button Rect:", buttonRect);
+    }
+
+    function HandleMouseLeave() {
+        setShowTooltip(false);
+    }
+
     return (
         <>
             {hovered && (
-                <SimpleButton variant={"secondary"} size={"small"}>
+                <SimpleButton variant={"secondary"} size={"small"} className="group relative" onMouseEnter={HandleMouseEnter} onMouseLeave={HandleMouseLeave} ref={buttonRef}>
                     <span className="m-0 p-0">{todo.completed ? "✅" : "❌"}</span>
                 </SimpleButton>
+            )}
+            {showTooltip && (
+                createPortal(
+                    <div className={`fixed z-50 bg-white shadow-lg p-4 rounded text-zinc-900`}
+                        style={{
+                            top: buttonRect ? buttonRect.bottom + 8 : 0,
+                            left: buttonRect ? buttonRect.left : 0,
+                        }}
+                    >
+                        Tooltip!
+                    </div >, document.body)
             )}
         </>
     )
